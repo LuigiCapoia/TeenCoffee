@@ -42,3 +42,4 @@ Ten Coffee é um sistema de gerenciamento de cafeterias projetado para ajudar os
 1. Clone o repositório:
    ```bash
    git clone https://github.com/LuigiCapoia/TeenCoffee
+             https://gitlab.com/Capoia00/tencoffee.git
