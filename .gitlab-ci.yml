@@ -1,0 +1,52 @@
+stages:
+  - build
+  - lint
+  - test
+  - analyze
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+cache:
+  paths:
+    - .m2/repository
+
+before_script:
+  - export MAVEN_CLI_OPTS="--batch-mode --errors --fail-at-end"
+  - export MAVEN_OPTS="-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+build:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS install -DskipTests
+
+checkstyle:
+  stage: lint
+  script:
+    - mvn $MAVEN_CLI_OPTS checkstyle:check
+
+pmd:
+  stage: lint
+  script:
+    - mvn $MAVEN_CLI_OPTS pmd:check
+
+spotbugs:
+  stage: lint
+  script:
+    - mvn $MAVEN_CLI_OPTS spotbugs:check
+
+test:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
+
+coverage:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS jacoco:prepare-agent test jacoco:report
+    - mvn $MAVEN_CLI_OPTS verify
+
+dependency_check:
+  stage: analyze
+  script:
+    - mvn $MAVEN_CLI_OPTS org.owasp:dependency-check-maven:check
