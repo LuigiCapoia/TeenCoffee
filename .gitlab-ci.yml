@@ -20,7 +20,7 @@ before_script:
 build:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS install -DskipTests
+    - mvn $MAVEN_CLI_OPTS clean install -DskipTests
 
 checkstyle:
   stage: lint
