@@ -17,7 +17,7 @@
                     <configLocation>config/checkstyle/checkstyle.xml</configLocation>
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnViolation>true>
+                    <failsOnError>true</failsOnError>
                 </configuration>
                 <executions>
                     <execution>
