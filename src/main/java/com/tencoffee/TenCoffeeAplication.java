@@ -1,11 +1,11 @@
-package com.tencoffe;
+package com.tencoffee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TenCoffeApplication {
+public class TenCoffeeApplication {
     public static void main(String[] args) {
-        SpringApplication.run(TenCoffeApplication.class, args);
+        SpringApplication.run(TenCoffeeApplication.class, args);
     }
 }
