@@ -69,6 +69,21 @@
         </plugins>
     </build>
 
+    <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version> <!-- Use a versão que suporta JDK 17 -->
+            <configuration>
+                <source>17</source>
+                <target>17</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+
     <dependencies>
         <!-- Dependências do Spring Boot -->
         <dependency>
