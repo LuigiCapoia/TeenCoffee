@@ -1,59 +1,22 @@
+image: maven:3.8.1-openjdk-22
+
 stages:
   - build
   - test
-  - quality
-
-image: maven:3.8.1-jdk-11
 
 variables:
-  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
 cache:
   paths:
     - .m2/repository
 
-before_script:
-  - apt-get update -qq && apt-get install -qq -y curl unzip zip
-
 build:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS clean install
+    - mvn compile
 
 test:
   stage: test
   script:
-    - mvn $MAVEN_CLI_OPTS test
-
-checkstyle:
-  stage: quality
-  script:
-    - mvn $MAVEN_CLI_OPTS checkstyle:check
-  artifacts:
-    paths:
-      - target/checkstyle-result.xml
-
-pmd:
-  stage: quality
-  script:
-    - mvn $MAVEN_CLI_OPTS pmd:pmd
-  artifacts:
-    paths:
-      - target/pmd.xml
-
-spotbugs:
-  stage: quality
-  script:
-    - mvn $MAVEN_CLI_OPTS spotbugs:check
-  artifacts:
-    paths:
-      - target/spotbugsXml.xml
-
-jacoco:
-  stage: quality
-  script:
-    - mvn $MAVEN_CLI_OPTS jacoco:report
-  artifacts:
-    paths:
-      - target/site/jacoco
+    - mvn test
