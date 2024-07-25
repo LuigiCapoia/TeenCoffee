@@ -3,8 +3,10 @@ stages:
   - test
   - quality
 
+image: maven:3.8.1-jdk-11
+
 variables:
-  MAVEN_CLI_OPTS: "-s ./.m2/settings.xml --batch-mode --errors --fail-at-end --show-version"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
 cache:
@@ -12,10 +14,7 @@ cache:
     - .m2/repository
 
 before_script:
-  - apt-get update -qq && apt-get install -qq -y curl unzip
-  - curl -s "https://get.sdkman.io" | bash
-  - source "$HOME/.sdkman/bin/sdkman-init.sh"
-  - sdk install maven
+  - apt-get update -qq && apt-get install -qq -y curl unzip zip
 
 build:
   stage: build
