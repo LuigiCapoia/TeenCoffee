@@ -19,7 +19,7 @@
     </parent>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>22</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
@@ -43,6 +43,17 @@
 
     <build>
         <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
             <!-- Checkstyle plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
